@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
 import { productCatalog } from '../config/products';
 
-// =========================================================================
-// STATIC ASSET IMPORTS
-// Update the filenames below to match your actual files inside src/assets/
-// =========================================================================
+
 
 // iFleetMax Assets
 import ifleetmax1 from '../assets/imaxfleet1.jpg';
@@ -41,7 +38,7 @@ import private1 from '../assets/private1.png';
 import private2 from '../assets/private1 (2).png';
 import private3 from '../assets/private3.png';
 
-// Mapping dictionary matching the dynamic system identifiers to bundled assets
+
 const productImages = {
   ifleetmax: [ifleetmax1, ifleetmax2, ifleetmax3],
   ifleetmaxFuel: [fuel1, fuel2, fuel3],
@@ -56,15 +53,15 @@ export default function ProductView({ productId, onNavigate }) {
   const currentProductId = productId || 'ifleetmax';
   const product = productCatalog[currentProductId] || productCatalog.ifleetmax;
 
-  // Track state for slide tracking
+ 
   const [activeSlide, setActiveSlide] = useState(0);
   // Track the previous product ID to safely detect when a product switch happens
   const [prevProductId, setPrevProductId] = useState(currentProductId);
 
-  // Retrieve the 3 slides for the current product, fallback to ifleetmax if missing
+  
   const slides = productImages[currentProductId] || productImages.ifleetmax;
 
-  // SYSTEM IDENTIFIER SWITCH: If the productId changes, reset the slide index immediately during render
+  
   if (currentProductId !== prevProductId) {
     setPrevProductId(currentProductId);
     setActiveSlide(0);
@@ -115,7 +112,7 @@ export default function ProductView({ productId, onNavigate }) {
         </div>
 
         {/* =========================================================================
-            SECTION 1: HERO VIEW MATRIX (Product Information + Auto-Advancing Image Gallery)
+            SECTION 1: HERO VIEW MATRIX 
            ========================================================================= */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           
@@ -138,7 +135,7 @@ export default function ProductView({ productId, onNavigate }) {
               {product.summary}
             </p>
 
-            {/* DIRECT CALL-TO-ACTION FOR SYSTEM DEPLOYMENT */}
+            
             <div className="pt-2">
               <button 
                 onClick={() => onNavigate('contact')}

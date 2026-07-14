@@ -1,7 +1,7 @@
 import  { useState } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import About from './pages/About'; // Imported newly created About Us view
+import About from './pages/About'; 
 import ProductView from './pages/ProductView';
 import Calculator from './pages/Calculator';
 import Contact from './pages/Contact';
@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import FloatingSocials from './components/FloatingSocials';
 
 export default function App() {
-  // Global View Routing Controllers (Default to 'home' or 'about' to test)
+  // Global View Routing Controllers 
   const [currentRoute, setCurrentRoute] = useState('home');
   const [currentProductKey, setCurrentProductKey] = useState(null);
 
