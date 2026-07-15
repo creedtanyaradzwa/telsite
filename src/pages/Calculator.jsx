@@ -5,7 +5,7 @@ export default function Calculator() {
   const [monthlyFuelCost, setMonthlyFuelCost] = useState(1200); // Per vehicle in USD
   const [suspectedTheftRate, setSuspectedTheftRate] = useState(15); // Percentage
 
-aselines
+baselines
   const currentTotalMonthlyFuel = fleetSize * monthlyFuelCost;
   const estimatedMonthlyLoss = currentTotalMonthlyFuel * (suspectedTheftRate / 100);
   const annualLoss = estimatedMonthlyLoss * 12;
