@@ -1,3 +1,6 @@
+import whatsappIcon from '../assets/Wicon.jpg'; 
+import instagramIcon from '../assets/Instagram_icon.png';
+
 export default function FloatingSocials() {
   const links = {
     whatsapp: "https://wa.me/263718339968?text=Hello%20Telsite%20Tracking,%20I%20am%20inquiring%20about...", 
@@ -7,7 +10,6 @@ export default function FloatingSocials() {
   };
 
   return (
-    
     <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-[9999] flex flex-col gap-2.5 sm:gap-3.5 pointer-events-none">
       
       {/* WHATSAPP FLOATING HUB */}
@@ -15,17 +17,14 @@ export default function FloatingSocials() {
         href={links.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
-        className="pointer-events-auto group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 bg-emerald-500 text-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-emerald-500/30 hover:-translate-y-0.5 transition-all duration-300"
+        className="pointer-events-auto group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 bg-emerald-500 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-emerald-500/30 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
         aria-label="Chat on WhatsApp"
       >
-        <svg 
-          className="w-4 h-4 sm:w-5 sm:h-5 2xl:w-7 2xl:h-7 fill-none stroke-white stroke-2 text-white" 
-          viewBox="0 0 24 24" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
-        >
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-        </svg>
+        <img 
+          src={whatsappIcon} 
+          alt="WhatsApp" 
+          className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-300" 
+        />
         
         <span className="hidden md:inline absolute right-14 2xl:right-20 font-mono text-[10px] 2xl:text-sm font-black uppercase tracking-wider text-slate-900 bg-white border border-slate-200/80 px-2.5 py-1 rounded-lg opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none shadow-xs whitespace-nowrap">
           WhatsApp
@@ -37,19 +36,15 @@ export default function FloatingSocials() {
         href={links.instagram}
         target="_blank"
         rel="noopener noreferrer"
-        className="pointer-events-auto group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 bg-gradient-to-tr from-amber-500 via-purple-600 to-indigo-600 text-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-purple-600/30 hover:-translate-y-0.5 transition-all duration-300"
+        className="pointer-events-auto group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 bg-gradient-to-tr from-amber-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-purple-600/30 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
         aria-label="Follow us on Instagram"
       >
-        <svg 
-          className="w-4 h-4 sm:w-5 sm:h-5 2xl:w-7 2xl:h-7 fill-none stroke-white stroke-2 text-white" 
-          viewBox="0 0 24 24" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
-        >
-          <rect x="2" y="2" width="20" h="20" rx="5" ry="5" />
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-        </svg>
+        <img 
+          src={instagramIcon} 
+          alt="Instagram" 
+          className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-300" 
+        />
+        
         <span className="hidden md:inline absolute right-14 2xl:right-20 font-mono text-[10px] 2xl:text-sm font-black uppercase tracking-wider text-slate-900 bg-white border border-slate-200/80 px-2.5 py-1 rounded-lg opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none shadow-xs whitespace-nowrap">
           Instagram
         </span>
