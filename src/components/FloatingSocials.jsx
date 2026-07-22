@@ -1,5 +1,5 @@
-import whatsappIcon from '../assets/Wicon.jpg'; 
-import instagramIcon from '../assets/Instagram_icon.png';
+import whatsappIcon from '../assets/Wicon.webp'; 
+import instagramIcon from '../assets/Instagram_icon.webp';
 
 export default function FloatingSocials() {
   const links = {

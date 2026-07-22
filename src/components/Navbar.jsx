@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { productCatalog } from '../config/products';
 
-import telsiteLogoImg from '../assets/logotelsite.png'; 
+import telsiteLogoImg from '../assets/logotelsite.webp'; 
 
 export default function Navbar({ currentRoute, currentProductKey, onNavigate }) {
   

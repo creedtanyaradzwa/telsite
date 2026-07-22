@@ -1,8 +1,8 @@
 import electroSalesLogo from '../assets/electrosales_logo.webp'; 
-import kdvBeddingLogo from '../assets/KDV.jpg';
+import kdvBeddingLogo from '../assets/KDV.webp';
 import discoveryLogo from '../assets/DISCOVERY.jpeg';
-import bholaLogo from '../assets/BHOLA.jpg';
-import dawnPropertiesLogo from '../assets/DAWN PROPERTIES.jpg';
+import bholaLogo from '../assets/BHOLA.webp';
+import dawnPropertiesLogo from '../assets/DAWN PROPERTIES.webp';
 
 export default function Footer() {
   const corporatePartners = [
