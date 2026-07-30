@@ -61,7 +61,7 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
       
       {/* Telsite Ambient Glow Orbs */}
       <div className="absolute top-[-5%] left-[-5%] w-[350px] md:w-[650px] h-[350px] md:h-[650px] rounded-full bg-[#b015db]/20 blur-[140px] pointer-events-none animate-pulse duration-[8000ms]" />
-      <div className="absolute bottom-[5%] right-[-5%] w-[300px] md:w-[550px] h-[300px] md:h-[550px] rounded-full bg-fuchsia-500/15 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[5%] right-[-5%] w-[300px] md:w-[550px] h-[300px] md:h-[550px] rounded-full bg-orange-500/15 blur-[120px] pointer-events-none" />
       <div className="absolute top-[40%] left-[20%] w-[250px] md:w-[450px] h-[250px] md:h-[450px] rounded-full bg-[#ad18aa]/20 blur-[130px] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative z-10 space-y-10">
@@ -79,13 +79,15 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
           </p>
         </div>
 
-        {/* Primary Interactive Form Layout (Glassmorphic Glass Sheet) */}
-        <form className="bg-purple-900/30 border border-purple-300/40 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-2xl shadow-purple-900/30 space-y-8">
+        {/* =========================================================================
+            PRIMARY INTERACTIVE FORM LAYOUT (WHITE THEME CARD)
+           ========================================================================= */}
+        <form className="bg-white border-2 border-orange-500/40 text-slate-900 rounded-3xl p-6 md:p-10 shadow-2xl shadow-black/50 space-y-8">
           
           {/* Section 1: Customer Logistics Details */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-[10px] font-mono font-black text-purple-200 uppercase tracking-widest mb-2">
+              <label className="block text-[10px] font-mono font-black text-slate-700 uppercase tracking-widest mb-2">
                 Company / Authorized Full Name
               </label>
               <input 
@@ -94,12 +96,12 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
                 placeholder="e.g., Alko Logistics Zimbabwe"
                 value={formData.companyName}
                 onChange={(e) => setFormData({...formData, companyName: e.target.value})}
-                className="w-full text-xs font-medium p-3.5 bg-purple-950/60 border border-purple-300/30 text-white placeholder-purple-300/40 rounded-xl focus:outline-none focus:border-fuchsia-400 focus:ring-1 focus:ring-fuchsia-400/40 transition-all duration-300"
+                className="w-full text-xs font-medium p-3.5 bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
               />
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono font-black text-purple-200 uppercase tracking-widest mb-2">
+              <label className="block text-[10px] font-mono font-black text-slate-700 uppercase tracking-widest mb-2">
                 Active WhatsApp Number
               </label>
               <input 
@@ -108,12 +110,12 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
                 placeholder="e.g., +263 77 XXXXXX"
                 value={formData.whatsappNumber}
                 onChange={(e) => setFormData({...formData, whatsappNumber: e.target.value})}
-                className="w-full text-xs font-medium p-3.5 bg-purple-950/60 border border-purple-300/30 text-white placeholder-purple-300/40 rounded-xl focus:outline-none focus:border-fuchsia-400 focus:ring-1 focus:ring-fuchsia-400/40 transition-all duration-300"
+                className="w-full text-xs font-medium p-3.5 bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
               />
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-[10px] font-mono font-black text-purple-200 uppercase tracking-widest mb-2">
+              <label className="block text-[10px] font-mono font-black text-slate-700 uppercase tracking-widest mb-2">
                 Corporate Email Address
               </label>
               <input 
@@ -122,16 +124,16 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
                 placeholder="operations@yourcompany.co.zw"
                 value={formData.emailAddress}
                 onChange={(e) => setFormData({...formData, emailAddress: e.target.value})}
-                className="w-full text-xs font-medium p-3.5 bg-purple-950/60 border border-purple-300/30 text-white placeholder-purple-300/40 rounded-xl focus:outline-none focus:border-fuchsia-400 focus:ring-1 focus:ring-fuchsia-400/40 transition-all duration-300"
+                className="w-full text-xs font-medium p-3.5 bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
               />
             </div>
           </div>
 
-          <hr className="border-purple-300/20" />
+          <hr className="border-slate-200" />
 
           {/* Section 2: Fleet Size Matrix Selector */}
           <div>
-            <label className="block text-[10px] font-mono font-black text-purple-200 uppercase tracking-widest mb-3">
+            <label className="block text-[10px] font-mono font-black text-slate-700 uppercase tracking-widest mb-3">
               Total Target Operational Fleet Size
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -141,8 +143,8 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
                   onClick={() => setFormData({...formData, fleetSize: option})}
                   className={`cursor-pointer border p-3.5 rounded-xl text-center font-mono text-[10px] sm:text-[11px] font-black transition-all select-none duration-300
                     ${formData.fleetSize === option 
-                      ? 'bg-purple-700/80 border-white text-white shadow-[0_0_20px_rgba(232,121,249,0.35)] -translate-y-0.5' 
-                      : 'bg-purple-950/40 border-purple-300/30 text-purple-200/80 hover:text-white hover:bg-purple-800/40 hover:border-purple-300/60'
+                      ? 'bg-orange-500 border-orange-600 text-white shadow-md shadow-orange-500/20 -translate-y-0.5' 
+                      : 'bg-orange-50/60 border-orange-200 text-slate-700 hover:bg-orange-100 hover:border-orange-300'
                     }`}
                 >
                   {option}
@@ -151,11 +153,11 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
             </div>
           </div>
 
-          <hr className="border-purple-300/20" />
+          <hr className="border-slate-200" />
 
           {/* Section 3: Multi-Select System Modules */}
           <div>
-            <label className="block text-[10px] font-mono font-black text-purple-200 uppercase tracking-widest mb-3">
+            <label className="block text-[10px] font-mono font-black text-slate-700 uppercase tracking-widest mb-3">
               Select Target Hardware / Software Payload Ecosystems
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -167,16 +169,16 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
                     onClick={() => handleProductToggle(product.title)}
                     className={`cursor-pointer border p-4 rounded-2xl flex items-center justify-between text-left transition-all duration-300 select-none
                       ${isSelected 
-                        ? 'bg-purple-800/60 border-purple-300 text-white shadow-[0_0_25px_rgba(232,121,249,0.25)] -translate-y-0.5' 
-                        : 'bg-purple-950/40 border-purple-300/30 hover:border-purple-300/60 hover:bg-purple-800/30 text-slate-300'
+                        ? 'bg-orange-50 border-orange-500 shadow-md -translate-y-0.5' 
+                        : 'bg-slate-50 border-slate-200 hover:bg-orange-50/40 hover:border-orange-300 text-slate-800'
                       }`}
                   >
                     <div>
-                      <span className="block text-xs font-black text-white">{product.title}</span>
-                      <span className="block text-[10px] text-purple-200/80 font-mono font-medium mt-0.5">{product.tagline}</span>
+                      <span className="block text-xs font-black text-slate-900">{product.title}</span>
+                      <span className="block text-[10px] text-orange-600 font-mono font-bold mt-0.5">{product.tagline}</span>
                     </div>
                     <div className={`h-5 w-5 rounded-md border flex items-center justify-center text-[11px] text-white font-black transition-all duration-300
-                      ${isSelected ? 'bg-fuchsia-600 border-white shadow-sm' : 'bg-purple-950/60 border-purple-300/40'}`}>
+                      ${isSelected ? 'bg-orange-500 border-orange-600 shadow-sm' : 'bg-white border-slate-300'}`}>
                       {isSelected && "✓"}
                     </div>
                   </div>
@@ -185,11 +187,11 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
             </div>
           </div>
 
-          <hr className="border-purple-300/20" />
+          <hr className="border-slate-200" />
 
           {/* Section 4: Custom Notes */}
           <div>
-            <label className="block text-[10px] font-mono font-black text-purple-200 uppercase tracking-widest mb-2">
+            <label className="block text-[10px] font-mono font-black text-slate-700 uppercase tracking-widest mb-2">
               Special Deployment Instructions / Custom Requests
             </label>
             <textarea 
@@ -197,7 +199,7 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
               placeholder="List any unique fuel tank shapes, custom tracking rules, or specific cross-border destination routing challenges..."
               value={formData.customNotes}
               onChange={(e) => setFormData({...formData, customNotes: e.target.value})}
-              className="w-full text-xs font-medium p-3.5 bg-purple-950/60 border border-purple-300/30 text-white placeholder-purple-300/40 rounded-xl focus:outline-none focus:border-fuchsia-400 focus:ring-1 focus:ring-fuchsia-400/40 transition-all duration-300"
+              className="w-full text-xs font-medium p-3.5 bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
             ></textarea>
           </div>
 
@@ -208,7 +210,7 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
             <button
               type="button"
               onClick={dispatchToWhatsApp}
-              className="cursor-pointer bg-emerald-600/90 hover:bg-emerald-500 border border-emerald-400/40 text-white font-mono text-xs font-black uppercase tracking-wider py-4 px-4 rounded-xl shadow-lg shadow-emerald-950/50 flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:-translate-y-0.5 active:translate-y-0"
+              className="cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs font-black uppercase tracking-wider py-4 px-4 rounded-xl shadow-lg shadow-emerald-950/20 flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 active:translate-y-0"
             >
               💬 Request via WhatsApp
             </button>
@@ -217,7 +219,7 @@ _Generated via Telsite Tracking Ecosystem Portal_`;
             <button
               type="button"
               onClick={dispatchToGmail}
-              className="cursor-pointer bg-purple-800/60 hover:bg-purple-700/80 border border-purple-300/40 hover:border-white text-white font-mono text-xs font-black uppercase tracking-wider py-4 px-4 rounded-xl shadow-lg shadow-purple-950/50 flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_25px_rgba(232,121,249,0.4)] hover:-translate-y-0.5 active:translate-y-0"
+              className="cursor-pointer bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-black uppercase tracking-wider py-4 px-4 rounded-xl shadow-lg shadow-orange-950/20 flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:-translate-y-0.5 active:translate-y-0"
             >
               ✉️ Request via Email
             </button>
