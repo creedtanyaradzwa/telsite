@@ -4,49 +4,51 @@ export default function About() {
   const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=-17.817354,31.026402+(Telsite+Tracking)";
 
   return (
-    <div className="w-full bg-gradient-to-b from-purple-950 via-[#2f083d] to-purple-950 text-slate-100 min-h-screen py-16 px-4 md:px-8 relative overflow-hidden">
+    <div className="w-full bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-900 text-black min-h-screen py-10 md:py-16 px-4 md:px-10 relative overflow-hidden font-sans antialiased">
       
-      {/* Telsite Ambient Glow Orbs */}
-      <div className="absolute top-[-5%] right-[-5%] w-[350px] md:w-[650px] h-[350px] md:h-[650px] rounded-full bg-[#bb28e4]/20 blur-[140px] pointer-events-none animate-pulse duration-[8000ms]" />
-      <div className="absolute bottom-[-5%] left-[-5%] w-[300px] md:w-[550px] h-[300px] md:h-[550px] rounded-full bg-orange-500/15 blur-[120px] pointer-events-none" />
-      <div className="absolute top-[40%] left-[20%] w-[250px] md:w-[450px] h-[250px] md:h-[450px] rounded-full bg-[#ad18aa]/20 blur-[130px] pointer-events-none" />
+      {/* =========================================================================
+          ANIMATED GLOWING & MOVING AMBIENT LIGHT ORBS
+         ========================================================================= */}
+      <div className="absolute top-[-5%] right-[-5%] w-[450px] md:w-[750px] h-[450px] md:h-[750px] rounded-full bg-[#D8C7A9]/20 blur-[130px] pointer-events-none animate-pulse duration-[7000ms]" />
+      <div className="absolute top-[35%] left-[-8%] w-[400px] md:w-[650px] h-[400px] md:h-[650px] rounded-full bg-fuchsia-400/20 blur-[140px] pointer-events-none animate-pulse duration-[10000ms]" />
+      <div className="absolute bottom-[-5%] left-[10%] w-[500px] md:w-[800px] h-[500px] md:h-[800px] rounded-full bg-purple-300/15 blur-[150px] pointer-events-none animate-pulse duration-[9000ms]" />
 
-      <div className="max-w-5xl 2xl:max-w-7xl mx-auto relative z-10 space-y-12 md:space-y-20">
+      <div className="max-w-6xl 2xl:max-w-7xl mx-auto relative z-10 space-y-12 md:space-y-20 pt-24 lg:pt-28">
         
         {/* =========================================================================
-            HERO CONTAINER (CLEAN IMAGE - NO PURPLE OVERLAY)
+            HERO CONTAINER (CRISP & CLEAR BACKGROUND - NO OVERLAY)
            ========================================================================= */}
-        <div className="relative rounded-3xl overflow-hidden border border-orange-500/30 shadow-2xl bg-slate-900">
+        <div className="relative rounded-3xl overflow-hidden border border-white/90 shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_25px_50px_rgba(0,0,0,0.5)] bg-[#D8C7A9]/95 backdrop-blur-3xl text-amber-950">
           
-          {/* Pure Background Image Layer (Zero Purple Overlay) */}
+          {/* Background Image Layer (Crisp & Fully Visible) */}
           <div className="absolute inset-0 z-0">
             <img 
               src={aboutBg} 
               alt="Telsite Infrastructure Background" 
-              className="w-full h-full object-cover shadow-inner"
+              className="w-full h-full object-cover brightness-100 contrast-100 opacity-100"
             />
           </div>
 
-          <div className="relative z-10 p-6 sm:p-10 md:p-16 text-center max-w-3xl 2xl:max-w-5xl mx-auto space-y-6 sm:space-y-8">
-            <div className="space-y-4">
-              <span className="inline-block bg-slate-900/90 border border-orange-500/60 text-orange-400 font-mono text-[9px] sm:text-[10px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-md">
+          <div className="relative z-10 p-6 sm:p-12 md:p-20 text-center max-w-4xl 2xl:max-w-5xl mx-auto space-y-8">
+            <div className="space-y-5">
+              <span className="inline-block bg-[#D8C7A9] border border-white/90 text-amber-950 font-mono text-xs md:text-sm font-black uppercase tracking-widest px-5 py-2.5 rounded-full shadow-[inset_0_2px_4px_rgba(255,255,255,1),0_10px_20px_rgba(0,0,0,0.4)] backdrop-blur-md">
                 ✦ Corporate Profile & Infrastructure
               </span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl 2xl:text-7xl font-black tracking-tight leading-tight text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
-                Pioneering <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-white">Telematics Standards</span> in Zimbabwe
+              <h1 className="text-4xl sm:text-5xl md:text-6xl 2xl:text-7xl font-black tracking-tight leading-tight text-amber-950 drop-shadow-[0_4px_12px_rgba(255,255,255,0.9)]">
+               <span   className="text-amber-900 drop-shadow-[0_4px_12px_rgba(255,255,255,0.9)]">Pioneering Telematics Standards in Zimbabwe</span>
               </h1>
-              <p className="text-slate-100 text-xs sm:text-sm md:text-base leading-relaxed font-normal max-w-2xl 2xl:max-w-4xl mx-auto bg-slate-950/85 p-4 sm:p-5 rounded-2xl border border-orange-500/40 backdrop-blur-md shadow-2xl">
+              <p className="text-amber-950 text-base sm:text-lg md:text-xl leading-relaxed font-black max-w-3xl 2xl:max-w-4xl mx-auto bg-[#D8C7A9]/95 p-6 sm:p-7 rounded-3xl border border-white/90 backdrop-blur-md shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_20px_40px_rgba(0,0,0,0.5)]">
                 Established in 2010 as a core operating division of Telsite Investments (Pvt) Ltd, Telsite Tracking has grown into one of the country's most relied-upon asset management intelligence architectures.
               </p>
             </div>
 
-            <div className="mt-6 pt-6 sm:mt-8 sm:pt-8 border-t border-orange-500/30 text-left">
-              <div className="bg-slate-950/85 border border-orange-500/40 p-5 sm:p-6 rounded-2xl space-y-2 shadow-2xl backdrop-blur-md">
+            <div className="mt-8 pt-8 border-t border-white/40 text-left">
+              <div className="bg-[#D8C7A9]/95 border border-white/90 p-6 sm:p-8 rounded-3xl space-y-3 shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-md">
                 <div className="flex items-center gap-3">
-                  <span className="text-xl sm:text-2xl">🔭</span>
-                  <h2 className="text-xs sm:text-sm font-mono font-black text-orange-400 uppercase tracking-wider">Our Strategic Vision</h2>
+                  <span className="text-2xl sm:text-3xl">🔭</span>
+                  <h2 className="text-base sm:text-lg font-mono font-black text-amber-950 uppercase tracking-wider">Our Strategic Vision</h2>
                 </div>
-                <p className="text-slate-100 text-xs sm:text-sm leading-relaxed font-normal">
+                <p className="text-amber-950 text-base sm:text-lg leading-relaxed font-black">
                   To be the definitive blueprint for intelligent fleet optimization across Africa, ensuring every commercial wheel turning within our borders is backed by robust data pipelines, maximized security layers, and unquestionable operational safety compliance thresholds.
                 </p>
               </div>
@@ -55,16 +57,16 @@ export default function About() {
         </div>
 
         {/* =========================================================================
-            OUR CORPORATE MISSION (STRATEGIC ORANGE ACCENTS)
+            OUR CORPORATE MISSION (4D KHAKI GLASS CARD)
            ========================================================================= */}
         <section className="w-full">
-          <div className="bg-slate-900/80 border border-orange-500/40 rounded-3xl p-6 sm:p-8 md:p-10 space-y-4 shadow-2xl shadow-black/40 relative overflow-hidden group hover:border-orange-500 transition-all duration-300 backdrop-blur-md">
-            <div className="absolute top-0 left-0 w-[4px] h-full bg-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.8)]" />
-            <div className="text-2xl sm:text-3xl">🚀</div>
-            <h2 className="text-lg sm:text-xl font-black text-white tracking-tight flex items-center gap-2">
-              Our Corporate Mission <span className="h-2 w-2 rounded-full bg-orange-500 inline-block animate-ping" />
+          <div className="bg-[#D8C7A9]/95 border border-white/90 rounded-3xl p-7 sm:p-10 md:p-12 space-y-5 shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_25px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group transition-all duration-300 backdrop-blur-3xl text-amber-950">
+            <div className="absolute top-0 left-0 w-[6px] h-full bg-amber-950 shadow-[0_0_15px_rgba(69,26,3,0.8)]" />
+            <div className="text-3xl sm:text-4xl">🚀</div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-amber-950 tracking-tight flex items-center gap-3">
+              Our Corporate Mission <span className="h-3 w-3 rounded-full bg-amber-950 inline-block animate-ping" />
             </h2>
-            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg md:text-xl text-amber-950 leading-relaxed font-black">
               We empower corporate enterprises and public transporters to eliminate overhead waste, eliminate fuel siphoning loops instantly, and comfortably fulfill statutory regulatory frameworks via engineering support that responds instantly to our clients' precise field feedback.
             </p>
           </div>
@@ -73,51 +75,49 @@ export default function About() {
         {/* =========================================================================
             THE TELSITE DISRUPTIVE ENTERPRISE CHALLENGE
            ========================================================================= */}
-        <section className="bg-slate-900/80 border border-orange-500/40 text-white rounded-3xl p-6 sm:p-10 md:p-12 relative overflow-hidden shadow-2xl shadow-black/40 backdrop-blur-md">
-          <div className="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-bl from-orange-500/15 to-transparent rounded-full blur-3xl pointer-events-none" />
-          
-          <div className="max-w-3xl 2xl:max-w-5xl space-y-6 sm:space-y-8 relative z-10">
-            <div className="space-y-2">
-              <span className="inline-block bg-orange-500 border border-orange-400/50 text-white font-mono text-[9px] sm:text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+        <section className="bg-[#D8C7A9]/95 border border-white/90 text-amber-950 rounded-3xl p-7 sm:p-12 md:p-14 relative overflow-hidden shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_25px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl">
+          <div className="max-w-4xl 2xl:max-w-5xl space-y-7 sm:space-y-9 relative z-10">
+            <div className="space-y-3">
+              <span className="inline-block bg-amber-950 border border-white/80 text-[#F3EAD8] font-mono text-xs md:text-sm font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-md">
                 The Telsite Operational Mandate
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight text-white">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-amber-950">
                 WE DON'T TALK HISTORY.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-slate-100">
+                <span className="text-amber-900 drop-shadow-[0_2px_4px_rgba(255,255,255,0.7)]">
                   WE SECURE ACTIVE RUNTIME.
                 </span>
               </h2>
-              <p className="text-slate-200 text-xs sm:text-sm font-normal max-w-xl">
+              <p className="text-amber-950 text-base md:text-xl font-black max-w-2xl">
                 While the industry asks you to wait weeks for telemetry mapping and hardware configuration, the Telsite ecosystem operates on an aggressive, guaranteed deployment matrix.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pt-4">
-              <div className="p-5 bg-slate-950/80 border border-orange-500/30 rounded-2xl space-y-3 shadow-md hover:border-orange-500/60 transition-all duration-300">
-                <div className="text-xl sm:text-2xl">⚡</div>
-                <div className="space-y-1">
-                  <h4 className="text-xs font-mono font-black text-orange-400 uppercase tracking-wider">24-Hour Provisioning</h4>
-                  <p className="text-[11px] sm:text-xs text-slate-300 font-normal leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+              <div className="p-6 bg-amber-950/10 border border-white/80 rounded-3xl space-y-4 shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)] hover:bg-amber-950/20 transition-all duration-300">
+                <div className="text-3xl">⚡</div>
+                <div className="space-y-2">
+                  <h4 className="text-sm font-mono font-black text-amber-950 uppercase tracking-wider">24-Hour Provisioning</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-amber-950 font-black leading-relaxed">
                     From formal purchase order to live field tracking. Our pre-configured units ship pre-mapped to your dashboard within one business day.
                   </p>
                 </div>
               </div>
 
-              <div className="p-5 bg-slate-950/80 border border-orange-500/30 rounded-2xl space-y-3 shadow-md hover:border-orange-500/60 transition-all duration-300">
-                <div className="text-xl sm:text-2xl">⛽</div>
-                <div className="space-y-1">
-                  <h4 className="text-xs font-mono font-black text-orange-400 uppercase tracking-wider">0% Fuel Bypass Target</h4>
-                  <p className="text-[11px] sm:text-xs text-slate-300 font-normal leading-relaxed">
-                    Our digital fuel sensor integration is calibrated so precisely that any variance triggers an instantaneous system lock alerts.
+              <div className="p-6 bg-amber-950/10 border border-white/80 rounded-3xl space-y-4 shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)] hover:bg-amber-950/20 transition-all duration-300">
+                <div className="text-3xl">⛽</div>
+                <div className="space-y-2">
+                  <h4 className="text-sm font-mono font-black text-amber-950 uppercase tracking-wider">0% Fuel Bypass Target</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-amber-950 font-black leading-relaxed">
+                    Our digital fuel sensor integration is calibrated so precisely that any variance triggers an instantaneous system lock alert.
                   </p>
                 </div>
               </div>
 
-              <div className="p-5 bg-slate-950/80 border border-orange-500/30 rounded-2xl space-y-3 shadow-md hover:border-orange-500/60 transition-all duration-300">
-                <div className="text-xl sm:text-2xl">⚖️</div>
-                <div className="space-y-1">
-                  <h4 className="text-xs font-mono font-black text-orange-400 uppercase tracking-wider">Bulletproof S.I. 118</h4>
-                  <p className="text-[11px] sm:text-xs text-slate-300 font-normal leading-relaxed">
+              <div className="p-6 bg-amber-950/10 border border-white/80 rounded-3xl space-y-4 shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)] hover:bg-amber-950/20 transition-all duration-300">
+                <div className="text-3xl">⚖️</div>
+                <div className="space-y-2">
+                  <h4 className="text-sm font-mono font-black text-amber-950 uppercase tracking-wider">Bulletproof S.I. 118</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-amber-950 font-black leading-relaxed">
                     We don't just promise compliance; our speed governors are backed by a zero-penalty guarantee. If our hardware drifts, we field-service it immediately.
                   </p>
                 </div>
@@ -127,46 +127,46 @@ export default function About() {
         </section>
 
         {/* =========================================================================
-            GEOGRAPHICAL LOCATION MAP SECTION
+            GEOGRAPHICAL LOCATION MAP SECTION (4D KHAKI MAP FRAME)
            ========================================================================= */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center bg-slate-900/80 border border-orange-500/40 rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl shadow-black/40 relative overflow-hidden backdrop-blur-md">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-7 sm:gap-9 items-center bg-[#D8C7A9]/95 border border-white/90 text-amber-950 rounded-3xl p-6 sm:p-10 md:p-12 shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_25px_50px_rgba(0,0,0,0.5)] relative overflow-hidden backdrop-blur-3xl">
           
-          <div className="md:col-span-5 space-y-5 sm:space-y-6 text-left">
+          <div className="md:col-span-5 space-y-6 text-left">
             <div className="space-y-2">
-              <h3 className="text-[10px] sm:text-xs font-mono font-black text-orange-400 uppercase tracking-widest">Headquarters Office</h3>
-              <h4 className="text-xl sm:text-2xl font-black text-white tracking-tight">Visit Our Command Offices</h4>
+              <h3 className="text-xs font-mono font-black text-amber-900 uppercase tracking-widest">Headquarters Office</h3>
+              <h4 className="text-2xl sm:text-3xl font-black text-amber-950 tracking-tight">Visit Our Command Offices</h4>
             </div>
 
-            <div className="space-y-4 text-xs sm:text-sm text-slate-200 font-normal">
-              <div className="flex gap-3 items-start">
-                <span className="text-base sm:text-lg">📍</span>
+            <div className="space-y-5 text-sm sm:text-base text-amber-950 font-black">
+              <div className="flex gap-3.5 items-start">
+                <span className="text-xl sm:text-2xl">📍</span>
                 <p>
-                  <strong className="text-orange-400 block font-bold mb-0.5 font-mono text-[11px] tracking-wide uppercase">Physical Address:</strong>
+                  <strong className="text-amber-950 block font-black mb-1 font-mono text-xs tracking-wide uppercase">Physical Address:</strong>
                   18 Divine Road, Milton Park,<br />
                   Harare, Zimbabwe
                 </p>
               </div>
 
-              <div className="flex gap-3 items-start">
-                <span className="text-base sm:text-lg">📞</span>
+              <div className="flex gap-3.5 items-start">
+                <span className="text-xl sm:text-2xl">📞</span>
                 <p>
-                  <strong className="text-orange-400 block font-bold mb-0.5 font-mono text-[11px] tracking-wide uppercase">Landline / Operations desk:</strong>
+                  <strong className="text-amber-950 block font-black mb-1 font-mono text-xs tracking-wide uppercase">Landline / Operations desk:</strong>
                   +263 242 741840
                 </p>
               </div>
 
-              <div className="flex gap-3 items-start">
-                <span className="text-base sm:text-lg">📱</span>
+              <div className="flex gap-3.5 items-start">
+                <span className="text-xl sm:text-2xl">📱</span>
                 <p>
-                  <strong className="text-orange-400 block font-bold mb-0.5 font-mono text-[11px] tracking-wide uppercase">Mobile Hotline Support:</strong>
+                  <strong className="text-amber-950 block font-black mb-1 font-mono text-xs tracking-wide uppercase">Mobile Hotline Support:</strong>
                   +263 718 339968
                 </p>
               </div>
 
-              <div className="flex gap-3 items-start">
-                <span className="text-base sm:text-lg">✉️</span>
+              <div className="flex gap-3.5 items-start">
+                <span className="text-xl sm:text-2xl">✉️</span>
                 <p>
-                  <strong className="text-orange-400 block font-bold mb-0.5 font-mono text-[11px] tracking-wide uppercase">Corporate Email Inbox:</strong>
+                  <strong className="text-amber-950 block font-black mb-1 font-mono text-xs tracking-wide uppercase">Corporate Email Inbox:</strong>
                   contact@telsite-tracking.co.zw
                 </p>
               </div>
@@ -176,22 +176,22 @@ export default function About() {
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3.5 bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider rounded-xl transition-all duration-300 shadow-lg group w-full sm:w-auto justify-center sm:justify-start hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2.5 px-6 py-4 bg-amber-950 hover:bg-amber-900 text-[#F3EAD8] text-xs sm:text-sm font-black uppercase tracking-wider rounded-2xl transition-all duration-300 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_12px_24px_rgba(0,0,0,0.5)] group w-full sm:w-auto justify-center sm:justify-start hover:-translate-y-0.5"
             >
               🚀 Launch Google Maps Navigation
-              <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+              <span className="transform group-hover:translate-x-1.5 transition-transform">→</span>
             </a>
           </div>
 
-          {/* CYBERPUNK MAP INTERFACE */}
-          <div className="md:col-span-7 relative w-full h-[260px] sm:h-[320px] bg-slate-950 border border-orange-500/40 rounded-2xl overflow-hidden shadow-2xl group">
+          {/* KHAKI MAP INTERFACE */}
+          <div className="md:col-span-7 relative w-full h-[280px] sm:h-[360px] bg-amber-950/20 border border-white/80 rounded-3xl overflow-hidden shadow-xl group">
             {/* Grid Pattern */}
-            <div className="absolute inset-0 bg-[radial-gradient(#f97316_[0.08_1.5px],transparent_1.5px)] [background-size:24px_24px] opacity-30 group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-[radial-gradient(#451a03_[0.1_1.5px],transparent_1.5px)] [background-size:24px_24px] opacity-25 group-hover:scale-105 transition-transform duration-700" />
             
-            <div className="absolute top-[40%] left-0 w-full h-8 bg-slate-900 border-y border-orange-500/30 -rotate-2 flex items-center justify-center font-mono text-[8px] sm:text-[9px] text-orange-400/80 font-bold uppercase tracking-widest select-none">
+            <div className="absolute top-[40%] left-0 w-full h-10 bg-[#D8C7A9] border-y border-amber-950/40 -rotate-2 flex items-center justify-center font-mono text-xs text-amber-950 font-black uppercase tracking-widest select-none shadow-md">
               Divine Road
             </div>
-            <div className="absolute top-0 left-[35%] w-10 h-full bg-slate-900 border-x border-orange-500/30 rotate-12 flex items-center justify-center font-mono text-[8px] sm:text-[9px] text-orange-400/80 font-bold uppercase tracking-widest [writing-mode:vertical-lr] select-none">
+            <div className="absolute top-0 left-[35%] w-12 h-full bg-[#D8C7A9] border-x border-amber-950/40 rotate-12 flex items-center justify-center font-mono text-xs text-amber-950 font-black uppercase tracking-widest [writing-mode:vertical-lr] select-none shadow-md">
               Milton Park Link
             </div>
 
@@ -201,21 +201,20 @@ export default function About() {
               rel="noopener noreferrer"
               className="absolute top-[38%] left-[36%] -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20 group/pin"
             >
-              <span className="absolute -inset-4 rounded-full bg-orange-500/30 animate-ping duration-1000" />
-              <span className="absolute -inset-8 rounded-full bg-orange-500/15 animate-pulse" />
+              <span className="absolute -inset-4 rounded-full bg-amber-950/30 animate-ping duration-1000" />
 
-              <div className="bg-slate-950 text-white border-2 border-orange-500 rounded-xl px-3 py-1.5 shadow-[0_0_20px_rgba(249,115,22,0.6)] flex items-center gap-2 group-hover/pin:scale-105 transition-transform duration-300">
-                <span className="text-xs sm:text-sm animate-bounce">📍</span>
+              <div className="bg-[#D8C7A9] text-amber-950 border-2 border-white/90 rounded-2xl px-4 py-2 shadow-2xl flex items-center gap-2.5 group-hover/pin:scale-105 transition-transform duration-300">
+                <span className="text-base sm:text-lg animate-bounce">📍</span>
                 <div className="text-left font-sans">
-                  <span className="block font-black text-[9px] sm:text-[10px] leading-none uppercase tracking-wide text-orange-400">Telsite HQ</span>
-                  <span className="block text-[7px] sm:text-[8px] font-mono text-slate-300 mt-0.5">No. 18 Divine Road</span>
+                  <span className="block font-black text-xs sm:text-sm leading-none uppercase tracking-wide text-amber-950">Telsite HQ</span>
+                  <span className="block text-[10px] sm:text-xs font-mono font-bold text-amber-900 mt-0.5">No. 18 Divine Road</span>
                 </div>
               </div>
             </a>
 
-            <div className="absolute bottom-3 right-3 left-3 bg-slate-950/90 border border-orange-500/40 backdrop-blur-md p-2 rounded-xl flex items-center justify-between text-[8px] sm:text-[10px] font-mono shadow-md pointer-events-none transition-all duration-300">
-              <span className="text-slate-300 font-bold">🔍 ZOOM LEVEL: HARARE ENTERPRISE MATRIX</span>
-              <span className="text-orange-400 font-black animate-pulse hidden sm:inline">CLICK ANYWHERE TO NAVIGATE LIVE →</span>
+            <div className="absolute bottom-4 right-4 left-4 bg-[#D8C7A9]/95 border border-white/80 backdrop-blur-md p-3 rounded-2xl flex items-center justify-between text-xs font-mono shadow-md pointer-events-none transition-all duration-300">
+              <span className="text-amber-950 font-black">🔍 ZOOM LEVEL: HARARE ENTERPRISE MATRIX</span>
+              <span className="text-amber-900 font-black animate-pulse hidden sm:inline">CLICK LIVE MAP →</span>
             </div>
 
             <a 

@@ -5,7 +5,6 @@ import About from './pages/About';
 import ProductView from './pages/ProductView';
 import Calculator from './pages/Calculator';
 import Contact from './pages/Contact';
-import Footer from './components/Footer';
 import FloatingSocials from './components/FloatingSocials';
 
 export default function App() {
@@ -43,20 +42,20 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-tr from-[#1E1145] via-[#120B2E] to-[#2D124D] text-slate-100 antialiased selection:bg-fuchsia-500/40 selection:text-white flex flex-col justify-between overflow-x-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-[#7e22ce] via-[#9333ea] to-[#6b21a8] text-white antialiased selection:bg-fuchsia-500 selection:text-white flex flex-col justify-between overflow-x-hidden">
       
-      {/* RADIANT AMBIENT GLOWS (Much brighter and pulsing) */}
-      <div className="absolute top-[-5%] left-[-10%] w-[650px] h-[650px] rounded-full bg-purple-500/25 blur-[120px] pointer-events-none animate-pulse duration-[7000ms]" />
-      <div className="absolute bottom-[15%] right-[-10%] w-[750px] h-[750px] rounded-full bg-fuchsia-500/20 blur-[150px] pointer-events-none animate-pulse duration-[11000ms]" />
-      <div className="absolute top-[40%] left-[15%] w-[500px] h-[500px] rounded-full bg-violet-500/15 blur-[100px] pointer-events-none animate-pulse duration-[9000ms]" />
+      {/* RADIANT AMBIENT GLOWS (Electric Purple & Fuchsia Orbs) */}
+      <div className="absolute top-[-5%] left-[-10%] w-[750px] h-[750px] rounded-full bg-fuchsia-400/40 blur-[130px] pointer-events-none animate-pulse duration-[7000ms]" />
+      <div className="absolute bottom-[15%] right-[-10%] w-[850px] h-[850px] rounded-full bg-purple-300/35 blur-[150px] pointer-events-none animate-pulse duration-[11000ms]" />
+      <div className="absolute top-[40%] left-[15%] w-[600px] h-[600px] rounded-full bg-violet-400/30 blur-[110px] pointer-events-none animate-pulse duration-[9000ms]" />
 
-      {/* High-Contrast Interactive Cyber Grid */}
+      {/* High-Contrast Luminous Cyber Grid */}
       <div 
-        className="absolute inset-0 bg-[linear-gradient(to_right,#3C2C73_1px,transparent_1px),linear-gradient(to_bottom,#3C2C73_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_10%,#000_65%,transparent_100%)] opacity-35 pointer-events-none"
+        className="absolute inset-0 bg-[linear-gradient(to_right,#e9d5ff_1px,transparent_1px),linear-gradient(to_bottom,#e9d5ff_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_10%,#000_70%,transparent_100%)] opacity-25 pointer-events-none"
       />
 
       {/* Content Layer */}
-      <div className="relative z-10 flex flex-col min-h-screen justify-between">
+      <div className="relative z-10 flex flex-col min-h-screen justify-between pb-12">
         <div>
           <Navbar 
             currentRoute={currentRoute} 
@@ -68,8 +67,6 @@ export default function App() {
           </main>
           <FloatingSocials />
         </div>
-
-        <Footer />
       </div>
     </div>
   );
