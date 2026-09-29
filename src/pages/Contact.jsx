@@ -1,235 +1,194 @@
 import { useState } from 'react';
 import { productCatalog } from '../config/products';
+import fleet1    from '../assets/fleet1 .webp';
+import bikefleet from '../assets/bikefleet.webp';
 
 export default function Contact() {
   const catalogList = productCatalog && typeof productCatalog === 'object'
-    ? (productCatalog.productCatalog ? Object.values(productCatalog.productCatalog) : Object.values(productCatalog))
+    ? (productCatalog.productCatalog
+        ? Object.values(productCatalog.productCatalog)
+        : Object.values(productCatalog))
     : [];
 
   const [formData, setFormData] = useState({
-    companyName: '',
-    whatsappNumber: '',
-    emailAddress: '',
-    fleetSize: '1-5 Vehicles', 
-    selectedProducts: [],
-    customNotes: ''
+    companyName: '', whatsappNumber: '', emailAddress: '',
+    fleetSize: '1–5 Vehicles', selectedProducts: [], customNotes: '',
   });
 
-  const handleProductToggle = (productTitle) => {
-    setFormData(prev => {
-      const alreadySelected = prev.selectedProducts.includes(productTitle);
-      const updatedProducts = alreadySelected
-        ? prev.selectedProducts.filter(title => title !== productTitle)
-        : [...prev.selectedProducts, productTitle];
-      return { ...prev, selectedProducts: updatedProducts };
-    });
+  const handleProductToggle = (title) => {
+    setFormData(prev => ({
+      ...prev,
+      selectedProducts: prev.selectedProducts.includes(title)
+        ? prev.selectedProducts.filter(t => t !== title)
+        : [...prev.selectedProducts, title],
+    }));
   };
 
   const generateMessagePayload = () => {
-    const productsList = formData.selectedProducts.length > 0 
-      ? formData.selectedProducts.join(', ') 
-      : 'Not Specified / General Inquiry';
-
-    return `*TELSITE SYSTEM DEPLOYMENT REQUEST*
---------------------------------------------
-🏢 *Company/Name:* ${formData.companyName || 'Not Provided'}
-📱 *WhatsApp:* ${formData.whatsappNumber || 'Not Provided'}
-✉️ *Email:* ${formData.emailAddress || 'Not Provided'}
-🚚 *Fleet Size:* ${formData.fleetSize}
-📡 *Target Systems:* ${productsList}
-📝 *Custom Requirements:* ${formData.customNotes || 'None'}
---------------------------------------------
-_Generated via Telsite Tracking Ecosystem Portal_`;
+    const productsList = formData.selectedProducts.length > 0
+      ? formData.selectedProducts.join(', ') : 'Not Specified / General Inquiry';
+    return `*TELSITE SYSTEM DEPLOYMENT REQUEST*\n--------------------------------------------\n🏢 *Company/Name:* ${formData.companyName || 'Not Provided'}\n📱 *WhatsApp:* ${formData.whatsappNumber || 'Not Provided'}\n✉️ *Email:* ${formData.emailAddress || 'Not Provided'}\n🚚 *Fleet Size:* ${formData.fleetSize}\n📡 *Target Systems:* ${productsList}\n📝 *Custom Requirements:* ${formData.customNotes || 'None'}\n--------------------------------------------\n_Generated via Telsite Tracking Ecosystem Portal_`;
   };
 
   const dispatchToWhatsApp = (e) => {
     e.preventDefault();
-    const textPayload = encodeURIComponent(generateMessagePayload());
-    const whatsappUrl = `https://wa.me/263718339968?text=${textPayload}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/263718339968?text=${encodeURIComponent(generateMessagePayload())}`, '_blank', 'noopener,noreferrer');
   };
-
   const dispatchToGmail = (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`System Deployment Request - ${formData.companyName || 'Fleet Operations'}`);
-    const body = encodeURIComponent(generateMessagePayload().replace(/\*/g, '')); // Strips markdown asterisks for clean email layout
+    const subject = encodeURIComponent(`System Deployment Request — ${formData.companyName || 'Fleet Operations'}`);
+    const body    = encodeURIComponent(generateMessagePayload().replace(/\*/g, ''));
     window.location.href = `mailto:contact@telsite-tracking.co.zw?subject=${subject}&body=${body}`;
   };
 
-  return (
-    <div className="w-full bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-900 text-black min-h-screen py-10 md:py-16 px-4 md:px-10 relative overflow-hidden font-sans antialiased">
-      
-      {/* =========================================================================
-          ANIMATED GLOWING & MOVING AMBIENT LIGHT ORBS
-         ========================================================================= */}
-      <div className="absolute top-[-5%] right-[-5%] w-[450px] md:w-[750px] h-[450px] md:h-[750px] rounded-full bg-[#D8C7A9]/20 blur-[130px] pointer-events-none animate-pulse duration-[7000ms]" />
-      <div className="absolute top-[35%] left-[-8%] w-[400px] md:w-[650px] h-[400px] md:h-[650px] rounded-full bg-fuchsia-400/20 blur-[140px] pointer-events-none animate-pulse duration-[10000ms]" />
-      <div className="absolute bottom-[-5%] left-[10%] w-[500px] md:w-[800px] h-[500px] md:h-[800px] rounded-full bg-purple-300/15 blur-[150px] pointer-events-none animate-pulse duration-[9000ms]" />
+  const inputBase = "w-full text-sm px-4 py-3 rounded-lg border text-white placeholder-slate-500 focus:outline-none focus:border-[#D8C7A9]/60 focus:ring-1 focus:ring-[#D8C7A9]/20 transition-colors duration-200";
 
-      <div className="max-w-4xl mx-auto relative z-10 space-y-12 pt-24 lg:pt-28">
-        
-        {/* Header Summary */}
-        <div className="text-center space-y-4">
-          <span className="inline-block bg-[#D8C7A9] border border-white/90 text-amber-950 font-mono text-xs md:text-sm font-black uppercase tracking-widest px-5 py-2.5 rounded-full shadow-[inset_0_2px_4px_rgba(255,255,255,1),0_10px_20px_rgba(0,0,0,0.4)] backdrop-blur-md">
-            ⚡ Telematics Dispatch Terminal
+  return (
+    <div className="w-full min-h-screen font-sans bg-purple-950">
+
+      {/* ── Header — full vivid image, text dominates ── */}
+      <div className="relative pt-28 lg:pt-32 pb-20 px-6 sm:px-10 md:px-16 border-b border-purple-400/20 overflow-hidden min-h-[340px] flex items-end">
+        <img src={fleet1} alt="" aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy" decoding="async" />
+        {/* Bottom-up gradient — image vivid at top, text dominant at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/15" />
+        <div className="relative z-10 w-full max-w-3xl mx-auto text-center space-y-5 pb-4">
+          <span className="inline-block border border-[#D8C7A9] text-[#D8C7A9] text-xs font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full"
+                style={{ textShadow: '0 1px 6px rgba(0,0,0,1)' }}>
+            Telematics Deployment Request
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#F3EAD8] drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
-            REQUEST OUR SERVICES
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-black text-white leading-tight"
+              style={{ textShadow: '0 0 20px rgba(255,255,255,0.15), 0 2px 16px rgba(0,0,0,1)' }}>
+            Request Our Services
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-amber-950 font-black max-w-2xl mx-auto leading-relaxed bg-[#D8C7A9]/95 p-6 rounded-3xl border border-white/90 backdrop-blur-3xl shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_20px_40px_rgba(0,0,0,0.5)]">
-            Configure your fleet layout variables below. Once compiled, choose your preferred communication channel to auto-fill your order onto our desks.
+          <p className="text-[#F3EAD8] text-sm sm:text-base font-semibold leading-relaxed max-w-xl mx-auto"
+             style={{ textShadow: '0 1px 10px rgba(0,0,0,1)' }}>
+            Configure your fleet variables below, then dispatch your request directly via WhatsApp or email. Our team will respond within 24 hours.
           </p>
         </div>
+      </div>
 
-        {/* =========================================================================
-            PRIMARY INTERACTIVE FORM LAYOUT (4D KHAKI GLASS CARD)
-           ========================================================================= */}
-        <form className="bg-[#D8C7A9]/95 border border-white/90 text-amber-950 rounded-3xl p-7 md:p-12 shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_25px_50px_rgba(0,0,0,0.5)] space-y-9 backdrop-blur-3xl">
-          
-          {/* Section 1: Customer Logistics Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-xs md:text-sm font-mono font-black text-amber-950 uppercase tracking-wider mb-2">
-                Company / Authorized Full Name
-              </label>
-              <input 
-                type="text" 
-                required
-                placeholder="e.g., Alko Logistics Zimbabwe"
-                value={formData.companyName}
-                onChange={(e) => setFormData({...formData, companyName: e.target.value})}
-                className="w-full text-sm md:text-base font-black p-4 bg-amber-950/10 border border-white/80 text-amber-950 placeholder-amber-950/50 rounded-2xl focus:outline-none focus:border-amber-950 focus:ring-2 focus:ring-amber-950/20 transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]"
-              />
-            </div>
+      {/* ── Form ── */}
+      <div className="py-14 md:py-20 px-6 sm:px-10 md:px-16 bg-purple-900/30">
+        <form className="max-w-3xl mx-auto space-y-8">
 
-            <div>
-              <label className="block text-xs md:text-sm font-mono font-black text-amber-950 uppercase tracking-wider mb-2">
-                Active WhatsApp Number
-              </label>
-              <input 
-                type="tel" 
-                required
-                placeholder="e.g., +263 77 XXXXXX"
-                value={formData.whatsappNumber}
-                onChange={(e) => setFormData({...formData, whatsappNumber: e.target.value})}
-                className="w-full text-sm md:text-base font-black p-4 bg-amber-950/10 border border-white/80 text-amber-950 placeholder-amber-950/50 rounded-2xl focus:outline-none focus:border-amber-950 focus:ring-2 focus:ring-amber-950/20 transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]"
-              />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-xs md:text-sm font-mono font-black text-amber-950 uppercase tracking-wider mb-2">
-                Corporate Email Address
-              </label>
-              <input 
-                type="email" 
-                required
-                placeholder="operations@yourcompany.co.zw"
-                value={formData.emailAddress}
-                onChange={(e) => setFormData({...formData, emailAddress: e.target.value})}
-                className="w-full text-sm md:text-base font-black p-4 bg-amber-950/10 border border-white/80 text-amber-950 placeholder-amber-950/50 rounded-2xl focus:outline-none focus:border-amber-950 focus:ring-2 focus:ring-amber-950/20 transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]"
-              />
-            </div>
-          </div>
-
-          <hr className="border-amber-950/20" />
-
-          {/* Section 2: Fleet Size Matrix Selector */}
-          <div>
-            <label className="block text-xs md:text-sm font-mono font-black text-amber-950 uppercase tracking-wider mb-3">
-              Total Target Operational Fleet Size
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {['1-5 Vehicles', '6-20 Vehicles', '21-50 Vehicles', '51+ Enterprise Wheels'].map((option) => (
-                <div 
-                  key={option}
-                  onClick={() => setFormData({...formData, fleetSize: option})}
-                  className={`cursor-pointer border p-4 rounded-2xl text-center font-mono text-xs sm:text-sm font-black transition-all select-none duration-300
-                    ${formData.fleetSize === option 
-                      ? 'bg-amber-950 border-white text-[#F3EAD8] shadow-[inset_0_2px_4px_rgba(255,255,255,0.3),0_10px_20px_rgba(0,0,0,0.4)] -translate-y-0.5' 
-                      : 'bg-amber-950/10 border-white/80 text-amber-950 hover:bg-amber-950/20'
-                    }`}
-                >
-                  {option}
+          {/* 01 Contact — muted slate */}
+          <fieldset className="rounded-xl p-7 bg-slate-700/80 border border-slate-500/40 backdrop-blur-sm space-y-6">
+            <legend className="text-white font-black text-sm px-1 pb-3 border-b border-white/15 w-full block mb-3 uppercase tracking-widest">
+              01 — Contact Details
+            </legend>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {[
+                { label: 'Company / Full Name', type: 'text', ph: 'e.g. Alko Logistics Zimbabwe', key: 'companyName'    },
+                { label: 'WhatsApp Number',      type: 'tel',  ph: '+263 77 XXXXXX',               key: 'whatsappNumber' },
+              ].map(({ label, type, ph, key }) => (
+                <div key={key}>
+                  <label className="block text-xs font-bold text-[#D8C7A9] uppercase tracking-widest mb-2">{label}</label>
+                  <input type={type} required placeholder={ph}
+                    value={formData[key]}
+                    onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
+                    className={`${inputBase} border-slate-500/40 bg-slate-800/60`} />
                 </div>
               ))}
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold text-[#D8C7A9] uppercase tracking-widest mb-2">Corporate Email Address</label>
+                <input type="email" required placeholder="operations@yourcompany.co.zw"
+                  value={formData.emailAddress}
+                  onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
+                  className={`${inputBase} border-slate-500/40 bg-slate-800/60`} />
+              </div>
             </div>
-          </div>
+          </fieldset>
 
-          <hr className="border-amber-950/20" />
-
-          {/* Section 3: Multi-Select System Modules */}
-          <div>
-            <label className="block text-xs md:text-sm font-mono font-black text-amber-950 uppercase tracking-wider mb-4">
-              Select Target Hardware / Software Payload Ecosystems
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {catalogList.map((product) => {
-                const isSelected = formData.selectedProducts.includes(product.title);
-                return (
-                  <div 
-                    key={product.title}
-                    onClick={() => handleProductToggle(product.title)}
-                    className={`cursor-pointer border p-4 sm:p-5 rounded-2xl flex items-center justify-between text-left transition-all duration-300 select-none
-                      ${isSelected 
-                        ? 'bg-amber-950/20 border-amber-950 shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)] -translate-y-0.5' 
-                        : 'bg-amber-950/10 border-white/80 hover:bg-amber-950/15 text-amber-950'
-                      }`}
-                  >
-                    <div>
-                      <span className="block text-sm font-black text-amber-950">{product.title}</span>
-                      <span className="block text-xs text-amber-900 font-mono font-bold mt-0.5">{product.tagline}</span>
-                    </div>
-                    <div className={`h-6 w-6 rounded-lg border-2 flex items-center justify-center text-xs text-[#F3EAD8] font-black transition-all duration-300
-                      ${isSelected ? 'bg-amber-950 border-amber-950 shadow-sm' : 'bg-transparent border-amber-950/40'}`}>
-                      {isSelected && "✓"}
-                    </div>
-                  </div>
-                );
-              })}
+          {/* 02 Fleet size — muted teal */}
+          <fieldset className="rounded-xl p-7 bg-teal-900/70 border border-teal-600/35 backdrop-blur-sm space-y-4">
+            <legend className="text-white font-black text-sm px-1 pb-3 border-b border-white/15 w-full block mb-3 uppercase tracking-widest">
+              02 — Fleet Size
+            </legend>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {['1–5 Vehicles', '6–20 Vehicles', '21–50 Vehicles', '51+ Enterprise'].map(opt => (
+                <button key={opt} type="button"
+                  onClick={() => setFormData({ ...formData, fleetSize: opt })}
+                  className={`py-3 px-3 rounded-lg text-xs font-black uppercase tracking-wider border transition-all duration-200 cursor-pointer text-center
+                    ${formData.fleetSize === opt
+                      ? 'bg-[#D8C7A9] border-[#D8C7A9] text-amber-950 shadow-md'
+                      : 'bg-white/8 border-white/20 text-[#D8C7A9] hover:border-[#D8C7A9]/60 hover:text-white'}`}>
+                  {opt}
+                </button>
+              ))}
             </div>
-          </div>
+          </fieldset>
 
-          <hr className="border-amber-950/20" />
+          {/* 03 Products — vivid image bg, text dominant */}
+          <fieldset className="relative rounded-xl overflow-hidden">
+            {/* Full vivid image */}
+            <img src={bikefleet} alt="" aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy" decoding="async" />
+            {/* Bottom-up gradient — same treatment as feature cards */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/25" />
+            <div className="relative z-10 p-7 space-y-4">
+              <legend className="block w-full pb-3 mb-3 border-b border-white/20 uppercase tracking-widest">
+                <span className="text-white font-black text-sm"
+                      style={{ textShadow: '0 2px 8px rgba(0,0,0,1)' }}>
+                  03 — Select Products / Services
+                </span>
+              </legend>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {catalogList.map(product => {
+                  const selected = formData.selectedProducts.includes(product.title);
+                  return (
+                    <div key={product.title} onClick={() => handleProductToggle(product.title)}
+                      className={`cursor-pointer flex items-center justify-between p-4 rounded-lg border transition-all duration-200 select-none backdrop-blur-sm
+                        ${selected
+                          ? 'bg-[#D8C7A9]/25 border-[#D8C7A9]/70'
+                          : 'bg-black/40 border-white/20 hover:border-[#D8C7A9]/50 hover:bg-black/50'}`}>
+                      <div>
+                        <span className="block text-sm font-black text-white"
+                              style={{ textShadow: '0 1px 6px rgba(0,0,0,1)' }}>
+                          {product.title}
+                        </span>
+                        <span className="block text-xs text-[#D8C7A9] font-semibold mt-0.5"
+                              style={{ textShadow: '0 1px 4px rgba(0,0,0,1)' }}>
+                          {product.tagline}
+                        </span>
+                      </div>
+                      <div className={`h-5 w-5 rounded border-2 flex items-center justify-center text-[10px] font-black shrink-0 ml-3 transition-colors duration-200
+                        ${selected ? 'bg-[#D8C7A9] border-[#D8C7A9] text-amber-950' : 'bg-transparent border-white/40'}`}>
+                        {selected && '✓'}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </fieldset>
 
-          {/* Section 4: Custom Notes */}
-          <div>
-            <label className="block text-xs md:text-sm font-mono font-black text-amber-950 uppercase tracking-wider mb-2">
-              Special Deployment Instructions / Custom Requests
-            </label>
-            <textarea 
-              rows="3" 
-              placeholder="List any unique fuel tank shapes, custom tracking rules, or specific cross-border destination routing challenges..."
+          {/* 04 Notes — indigo muted */}
+          <fieldset className="rounded-xl p-7 border border-indigo-500/30 bg-indigo-900/50 space-y-3">
+            <legend className="text-white font-black text-sm px-1 pb-3 border-b border-white/15 w-full block mb-3 uppercase tracking-widest">
+              04 — Special Instructions (Optional)
+            </legend>
+            <textarea rows="4"
+              placeholder="List any unique requirements — custom tank shapes, cross-border routes, special deployment constraints…"
               value={formData.customNotes}
-              onChange={(e) => setFormData({...formData, customNotes: e.target.value})}
-              className="w-full text-sm md:text-base font-black p-4 bg-amber-950/10 border border-white/80 text-amber-950 placeholder-amber-950/50 rounded-2xl focus:outline-none focus:border-amber-950 focus:ring-2 focus:ring-amber-950/20 transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]"
-            ></textarea>
-          </div>
+              onChange={(e) => setFormData({ ...formData, customNotes: e.target.value })}
+              className={`${inputBase} border-indigo-500/30 bg-indigo-950/60`} />
+          </fieldset>
 
-          {/* Section 5: Dual Auto-Fill Dispatches */}
-          <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            
-            {/* WhatsApp Deployment Button */}
-            <button
-              type="button"
-              onClick={dispatchToWhatsApp}
-              className="cursor-pointer bg-emerald-700 hover:bg-emerald-800 text-white font-mono text-sm font-black uppercase tracking-wider py-4.5 px-5 rounded-2xl shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_12px_24px_rgba(0,0,0,0.4)] flex items-center justify-center gap-2.5 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
-            >
-              💬 Request via WhatsApp
+          {/* Dispatch */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <button type="button" onClick={dispatchToWhatsApp}
+              className="cursor-pointer flex items-center justify-center gap-2.5 py-3.5 px-6 bg-teal-700 hover:bg-teal-600 text-white text-sm font-black uppercase tracking-widest rounded-lg transition-colors duration-200 shadow-md">
+              💬 Send via WhatsApp
             </button>
-
-            {/* Email Deployment Button */}
-            <button
-              type="button"
-              onClick={dispatchToGmail}
-              className="cursor-pointer bg-amber-950 hover:bg-amber-900 text-[#F3EAD8] font-mono text-sm font-black uppercase tracking-wider py-4.5 px-5 rounded-2xl shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_12px_24px_rgba(0,0,0,0.4)] flex items-center justify-center gap-2.5 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
-            >
-              ✉️ Request via Email
+            <button type="button" onClick={dispatchToGmail}
+              className="cursor-pointer flex items-center justify-center gap-2.5 py-3.5 px-6 bg-[#D8C7A9] hover:bg-white text-amber-950 text-sm font-black uppercase tracking-widest rounded-lg transition-colors duration-200 shadow-md">
+              ✉️ Send via Email
             </button>
-
           </div>
-
         </form>
-
       </div>
     </div>
   );

@@ -1,23 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-@theme {
-  /* Futuristic Light Theme Color Palettes */
-  --color-theme-bg: #f8fafc;
-  --color-theme-orange: #ea580c; /* Golden Orange for alerts/warnings */
-  --color-theme-lime: #16a34a;   /* Lime Green for active logs/savings */
-  --color-theme-purple: #a855f7; /* Bright Electric Purple for main branding */
-  --color-theme-blue: #0ea5e9;   /* Sky Blue for safe telemetry data */
-  
-  --color-text-main: #0f172a;   /* Premium dark charcoal for headers */
-  --color-text-muted: #475569;  /* Slate for readable body copy */
+/* ─── Google Fonts already imported above ───────────────────────────────────── */
 
-  /* Custom Glow/Shadow States */
-  --shadow-frosted: 0 8px 32px 0 rgba(15, 23, 42, 0.04);
-  --shadow-glow-purple: 0 10px 30px -2px rgba(168, 85, 247, 0.4);
-  --shadow-glow-blue: 0 10px 25px -5px rgba(14, 165, 233, 0.15);
+@theme {
+  /* Brand colour tokens */
+  --color-theme-bg:     #f8fafc;
+  --color-theme-orange: #ea580c;
+  --color-theme-lime:   #16a34a;
+  --color-theme-purple: #a855f7;
+  --color-theme-blue:   #0ea5e9;
+  --color-text-main:    #0f172a;
+  --color-text-muted:   #475569;
+
+  /* Shadow tokens */
+  --shadow-frosted:      0 8px 32px 0 rgba(15, 23, 42, 0.04);
+  --shadow-glow-purple:  0 10px 30px -2px rgba(168, 85, 247, 0.4);
+  --shadow-glow-blue:    0 10px 25px -5px rgba(14, 165, 233, 0.15);
+
+  /* Font families */
+  --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* Glassmorphic Utility Presets */
+/* ─── Base resets ───────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ─── Typography helpers ────────────────────────────────────────────────────── */
+.font-serif    { font-family: var(--font-serif); }
+.font-sans-ui  { font-family: var(--font-sans);  }
+
+/* Heading scale — serif, controlled weight */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ─── Formal section divider ────────────────────────────────────────────────── */
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background: #451a03;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Glassmorphic utility (navbar only) ────────────────────────────────────── */
 @utility light-glass {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
@@ -32,4 +83,111 @@
   border-color: rgba(124, 58, 237, 0.25);
   box-shadow: 0 12px 40px 0 rgba(124, 58, 237, 0.08);
   transform: translateY(-2px);
+}
+
+/* ─── Formal card ───────────────────────────────────────────────────────────── */
+@utility formal-card {
+  background: rgba(216, 199, 169, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  transition: box-shadow 0.25s ease;
+}
+
+@utility formal-card-hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* ─── Btn primary ───────────────────────────────────────────────────────────── */
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: #451a03;
+  color: #F3EAD8;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+@utility btn-primary-hover {
+  background: #5c2409;
+  box-shadow: 0 4px 16px rgba(69, 26, 3, 0.35);
+}
+
+/* ─── Btn outlined ──────────────────────────────────────────────────────────── */
+@utility btn-outlined {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: #451a03;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  border: 2px solid #451a03;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ─── Visible slider rails ──────────────────────────────────────────────────── */
+.slider-visible {
+  background: transparent;
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+.slider-visible::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.slider-visible::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #D8C7A9;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  margin-top: -6px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.slider-visible::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Firefox */
+.slider-visible::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.slider-visible::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #D8C7A9;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.slider-visible::-moz-range-thumb:hover {
+  transform: scale(1.2);
 }

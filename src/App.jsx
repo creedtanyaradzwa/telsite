@@ -1,18 +1,61 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About'; 
-import ProductView from './pages/ProductView';
-import Calculator from './pages/Calculator';
-import Contact from './pages/Contact';
+import Footer from './components/Footer';
 import FloatingSocials from './components/FloatingSocials';
 
+// Per-route SEO metadata
+const routeMeta = {
+  home: {
+    title: 'Telsite Tracking — Vehicle Tracking & Fleet Management Zimbabwe',
+    description: 'Real-time GPS vehicle tracking, fuel theft prevention and S.I. 118 speed governors for fleets across Zimbabwe. 24-hour deployment. Serving businesses since 2010.',
+  },
+  about: {
+    title: 'Company Profile — Telsite Tracking Zimbabwe',
+    description: 'Learn about Telsite Tracking, Zimbabwe\'s leading fleet telematics provider. Established 2010. Based at 18 Divine Road, Milton Park, Harare.',
+  },
+  product: {
+    title: 'Fleet Tracking Products — Telsite Tracking Zimbabwe',
+    description: 'Explore iFleetMax, iFleetMax Fuel, Speed Limiter, iRoam, iAsset, iBike and iPrivate — Zimbabwe\'s most complete vehicle tracking product range.',
+  },
+  roi: {
+    title: 'Fleet Savings Calculator — Telsite Tracking Zimbabwe',
+    description: 'Calculate how much your business can save with Telsite\'s fuel monitoring and vehicle tracking technology. See your projected annual recovery capital.',
+  },
+  contact: {
+    title: 'Request Services — Telsite Tracking Zimbabwe',
+    description: 'Request a vehicle tracking or fleet management deployment from Telsite Tracking. Serving all industries across Zimbabwe. Respond within 24 hours.',
+  },
+};
+
+// Lazy-load every page so each route is its own split chunk.
+// Users only download the JS for the page they actually visit.
+const Home        = lazy(() => import('./pages/Home'));
+const About       = lazy(() => import('./pages/About'));
+const ProductView = lazy(() => import('./pages/ProductView'));
+const Calculator  = lazy(() => import('./pages/Calculator'));
+const Contact     = lazy(() => import('./pages/Contact'));
+
+// Minimal inline fallback — no extra component file needed
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <span className="h-10 w-10 rounded-full border-4 border-[#D8C7A9]/40 border-t-[#D8C7A9] animate-spin" />
+    </div>
+  );
+}
+
 export default function App() {
-  // Global View Routing Controllers 
+  // Global View Routing Controllers
   const [currentRoute, setCurrentRoute] = useState('home');
   const [currentProductKey, setCurrentProductKey] = useState(null);
 
-  // Central Routing Engine Handler
+  // Update page title + meta description on every route change
+  useEffect(() => {
+    const meta = routeMeta[currentRoute] || routeMeta.home;
+    document.title = meta.title;
+    let descTag = document.querySelector('meta[name="description"]');
+    if (descTag) descTag.setAttribute('content', meta.description);
+  }, [currentRoute]);
   const handleNavigate = (route, productKey = null) => {
     setCurrentRoute(route);
     if (productKey) {
@@ -31,7 +74,7 @@ export default function App() {
       case 'about':
         return <About />;
       case 'roi':
-        return <Calculator />;
+        return <Calculator onNavigate={handleNavigate} />;
       case 'product':
         return <ProductView productId={currentProductKey} onNavigate={handleNavigate} />;
       case 'contact':
@@ -43,30 +86,25 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#7e22ce] via-[#9333ea] to-[#6b21a8] text-white antialiased selection:bg-fuchsia-500 selection:text-white flex flex-col justify-between overflow-x-hidden">
-      
-      {/* RADIANT AMBIENT GLOWS (Electric Purple & Fuchsia Orbs) */}
-      <div className="absolute top-[-5%] left-[-10%] w-[750px] h-[750px] rounded-full bg-fuchsia-400/40 blur-[130px] pointer-events-none animate-pulse duration-[7000ms]" />
-      <div className="absolute bottom-[15%] right-[-10%] w-[850px] h-[850px] rounded-full bg-purple-300/35 blur-[150px] pointer-events-none animate-pulse duration-[11000ms]" />
-      <div className="absolute top-[40%] left-[15%] w-[600px] h-[600px] rounded-full bg-violet-400/30 blur-[110px] pointer-events-none animate-pulse duration-[9000ms]" />
-
-      {/* High-Contrast Luminous Cyber Grid */}
-      <div 
-        className="absolute inset-0 bg-[linear-gradient(to_right,#e9d5ff_1px,transparent_1px),linear-gradient(to_bottom,#e9d5ff_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_10%,#000_70%,transparent_100%)] opacity-25 pointer-events-none"
-      />
-
+      {/* Single subtle ambient glow — reduced visual noise */}
+      <div className="absolute top-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-purple-500/15 blur-[140px] pointer-events-none" />
       {/* Content Layer */}
       <div className="relative z-10 flex flex-col min-h-screen justify-between pb-12">
         <div>
-          <Navbar 
-            currentRoute={currentRoute} 
-            currentProductKey={currentProductKey} 
-            onNavigate={handleNavigate} 
+          <Navbar
+            currentRoute={currentRoute}
+            currentProductKey={currentProductKey}
+            onNavigate={handleNavigate}
           />
           <main className="w-full">
-            {renderView()}
+            {/* Suspense boundary: shows spinner while the lazy chunk loads */}
+            <Suspense fallback={<PageLoader />}>
+              {renderView()}
+            </Suspense>
           </main>
           <FloatingSocials />
         </div>
+        <Footer onNavigate={handleNavigate} />
       </div>
     </div>
   );

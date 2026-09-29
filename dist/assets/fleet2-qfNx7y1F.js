@@ -1,0 +1,1 @@
+var e=`/telsite/assets/fleet2-DDTMPBNw.jpg`;export{e as t};
