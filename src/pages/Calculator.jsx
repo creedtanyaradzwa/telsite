@@ -1,141 +1,114 @@
 import { useState } from 'react';
-
-export default function Calculator() {
-  const [fleetSize, setFleetSize] = useState(10);
-  const [monthlyFuelCost, setMonthlyFuelCost] = useState(1200); // Per vehicle in USD
-  const [suspectedTheftRate, setSuspectedTheftRate] = useState(15); // Percentage
-
+import fleet3     from '../assets/fleet3.webp';
+import tracking5  from '../assets/tracking5.webp';
+export default function Calculator({ onNavigate }) {
+  const [fleetSize,          setFleetSize]          = useState(10);
+  const [monthlyFuelCost,    setMonthlyFuelCost]    = useState(1200);
+  const [suspectedTheftRate, setSuspectedTheftRate] = useState(15);
   const currentTotalMonthlyFuel = fleetSize * monthlyFuelCost;
-  const estimatedMonthlyLoss = currentTotalMonthlyFuel * (suspectedTheftRate / 100);
-  const annualLoss = estimatedMonthlyLoss * 12;
-  
-  const telsiteAnnualSavings = annualLoss * 0.75; 
-
+  const estimatedMonthlyLoss    = currentTotalMonthlyFuel * (suspectedTheftRate / 100);
+  const annualLoss              = estimatedMonthlyLoss * 12;
+  const telsiteAnnualSavings    = annualLoss * 0.75;
+  const sliderClass = "w-full h-2 rounded-full appearance-none cursor-pointer accent-[#D8C7A9] slider-visible";
   return (
-    <div className="w-full bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-900 text-black min-h-screen py-10 md:py-16 px-4 md:px-10 relative overflow-hidden font-sans antialiased">
-      
-      {/* =========================================================================
-          ANIMATED GLOWING & MOVING AMBIENT LIGHT ORBS
-         ========================================================================= */}
-      <div className="absolute top-[-5%] right-[-5%] w-[450px] md:w-[750px] h-[450px] md:h-[750px] rounded-full bg-[#D8C7A9]/20 blur-[130px] pointer-events-none animate-pulse duration-[7000ms]" />
-      <div className="absolute top-[35%] left-[-8%] w-[400px] md:w-[650px] h-[400px] md:h-[650px] rounded-full bg-fuchsia-400/20 blur-[140px] pointer-events-none animate-pulse duration-[10000ms]" />
-      <div className="absolute bottom-[-5%] left-[10%] w-[500px] md:w-[800px] h-[500px] md:h-[800px] rounded-full bg-purple-300/15 blur-[150px] pointer-events-none animate-pulse duration-[9000ms]" />
-
-      <div className="max-w-5xl mx-auto relative z-10 space-y-12 pt-24 lg:pt-28">
-        
-        {/* Header Segment Block */}
-        <div className="text-center space-y-4">
-          <span className="inline-block bg-[#D8C7A9] border border-white/90 text-amber-950 font-mono text-xs md:text-sm font-black uppercase tracking-widest px-5 py-2.5 rounded-full shadow-[inset_0_2px_4px_rgba(255,255,255,1),0_10px_20px_rgba(0,0,0,0.4)] backdrop-blur-md">
-            ✦ Financial Intelligence Analytics
+    <div className="w-full min-h-screen font-sans bg-purple-950">
+      {/* Header — image vivid, text dominant */}
+      <div className="relative pt-28 lg:pt-32 pb-20 px-6 sm:px-10 md:px-16 border-b border-purple-400/20 overflow-hidden min-h-[340px] flex items-end">
+        <img src={fleet3} alt="" aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy" decoding="async" />
+        {/* Gradient — strong at bottom/left where text is, lets image show clearly at top/right */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/15" />
+        <div className="relative z-10 w-full max-w-3xl mx-auto text-center space-y-5 pb-4">
+          <span className="inline-block border border-[#D8C7A9] text-[#D8C7A9] text-xs font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full"
+                style={{ textShadow: '0 1px 6px rgba(0,0,0,1)' }}>
+            Financial Intelligence
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#F3EAD8] drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
-            KNOW HOW MUCH YOU CAN SAVE WITH US
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-black text-white leading-tight"
+              style={{ textShadow: '0 0 20px rgba(255,255,255,0.15), 0 2px 16px rgba(0,0,0,1)' }}>
+            Fleet Savings Calculator
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-amber-950 font-black max-w-3xl mx-auto leading-relaxed bg-[#D8C7A9]/95 p-6 rounded-3xl border border-white/90 backdrop-blur-3xl shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_20px_40px_rgba(0,0,0,0.5)]">
-            Adjust your current operational variables to quantify the hidden financial drain of unmonitored siphoning and see exactly how much capital a local Telsite capacitive deployment can recover annually.
+          <p className="text-[#F3EAD8] text-sm sm:text-base font-semibold leading-relaxed max-w-xl mx-auto"
+             style={{ textShadow: '0 1px 10px rgba(0,0,0,1)' }}>
+            Adjust your operational variables below to quantify the hidden financial drain of unmonitored fuel siphoning — and see exactly how much a Telsite deployment can recover annually.
           </p>
         </div>
-
-        {/* Input / Output Control Split Matrix */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          
-          {/* Controls Adjustment Column (4D Khaki Glass Container) */}
-          <div className="md:col-span-5 bg-[#D8C7A9]/95 border border-white/90 backdrop-blur-3xl rounded-3xl p-7 md:p-9 space-y-7 shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_25px_50px_rgba(0,0,0,0.5)] text-amber-950">
-            <h3 className="text-sm font-black uppercase tracking-widest font-mono text-amber-950 pb-4 border-b border-amber-950/20">
-              Control Variables
-            </h3>
-
-            {/* Variable Item Node 1: Fleet Size */}
-            <div className="space-y-3">
-              <div className="flex justify-between text-sm sm:text-base font-mono font-bold">
-                <span className="text-amber-950 font-black">Active Fleet Size</span>
-                <span className="text-amber-900 font-black">{fleetSize} Vehicles</span>
+      </div>
+      {/* Body */}
+      <div className="py-14 md:py-20 px-6 sm:px-10 md:px-16 bg-purple-900/30">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* Controls — muted slate card */}
+          <div className="md:col-span-5">
+            <div className="rounded-xl p-7 space-y-8 bg-slate-700/80 border border-slate-500/40 backdrop-blur-sm">
+              <div className="pb-4 border-b border-white/15">
+                <h2 className="text-white font-semibold text-base">Control Variables</h2>
+                <p className="text-slate-300 text-xs mt-1">Drag the sliders to match your fleet profile.</p>
               </div>
-              <input
-                type="range"
-                min="1"
-                max="100"
-                value={fleetSize}
-                onChange={(e) => setFleetSize(Number(e.target.value))}
-                className="w-full h-3 bg-amber-950/20 rounded-lg appearance-none cursor-pointer accent-amber-950 border border-white/80"
-              />
-            </div>
-
-            {/* Variable Item Node 2: Monthly Fuel Cost */}
-            <div className="space-y-3">
-              <div className="flex justify-between text-sm sm:text-base font-mono font-bold">
-                <span className="text-amber-950 font-black">Avg Monthly Fuel / Vehicle</span>
-                <span className="text-amber-900 font-black">${monthlyFuelCost.toLocaleString()} USD</span>
-              </div>
-              <input
-                type="range"
-                min="20"
-                max="5000"
-                step="20"
-                value={monthlyFuelCost}
-                onChange={(e) => setMonthlyFuelCost(Number(e.target.value))}
-                className="w-full h-3 bg-amber-950/20 rounded-lg appearance-none cursor-pointer accent-amber-950 border border-white/80"
-              />
-            </div>
-
-            {/* Variable Item Node 3: Theft Rate */}
-            <div className="space-y-3">
-              <div className="flex justify-between text-sm sm:text-base font-mono font-bold">
-                <span className="text-amber-950 font-black">Est. Siphoning Loss Rate</span>
-                <span className="text-amber-900 font-black">{suspectedTheftRate}%</span>
-              </div>
-              <input
-                type="range"
-                min="5"
-                max="40"
-                value={suspectedTheftRate}
-                onChange={(e) => setSuspectedTheftRate(Number(e.target.value))}
-                className="w-full h-3 bg-amber-950/20 rounded-lg appearance-none cursor-pointer accent-amber-950 border border-white/80"
-              />
+              {[
+                { label: 'Fleet Size',                 value: `${fleetSize} vehicles`,               min: 1,  max: 100,  step: 1,  val: fleetSize,          set: setFleetSize          },
+                { label: 'Avg Monthly Fuel / Vehicle', value: `$${monthlyFuelCost.toLocaleString()}`, min: 20, max: 5000, step: 20, val: monthlyFuelCost,    set: setMonthlyFuelCost    },
+                { label: 'Estimated Siphoning Rate',   value: `${suspectedTheftRate}%`,              min: 5,  max: 40,   step: 1,  val: suspectedTheftRate, set: setSuspectedTheftRate },
+              ].map(({ label, value, min, max, step, val, set }) => (
+                <div key={label} className="space-y-3">
+                  <div className="flex justify-between items-baseline">
+                    <label className="text-slate-300 text-xs font-semibold uppercase tracking-wider">{label}</label>
+                    <span className="text-white font-semibold text-sm tabular-nums">{value}</span>
+                  </div>
+                  <input type="range" min={min} max={max} step={step} value={val}
+                    onChange={(e) => set(Number(e.target.value))} className={sliderClass} />
+                </div>
+              ))}
             </div>
           </div>
-
-          {/* Diagnostic Results Matrix Graph */}
-          <div className="md:col-span-7 bg-[#D8C7A9]/95 border border-white/90 backdrop-blur-3xl p-7 md:p-9 rounded-3xl flex flex-col justify-between shadow-[inset_0_3px_6px_rgba(255,255,255,1),0_25px_50px_rgba(0,0,0,0.5)] space-y-7 text-amber-950">
-            <div className="space-y-7">
-              <h3 className="text-sm font-black uppercase tracking-widest font-mono text-amber-950 pb-4 border-b border-amber-950/20">
-                Diagnostic Projections
-              </h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="bg-amber-950/10 border border-white/80 p-5 rounded-2xl shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)]">
-                  <p className="text-xs font-mono text-amber-900 uppercase font-black tracking-wider">Gross Fuel Spend / Mo</p>
-                  <p className="text-2xl font-black text-amber-950 mt-1">${currentTotalMonthlyFuel.toLocaleString()}</p>
-                </div>
-                <div className="bg-amber-950/20 border border-white/80 p-5 rounded-2xl shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)]">
-                  <p className="text-xs font-mono text-amber-900 uppercase font-black tracking-wider">Estimated Leakage / Mo</p>
-                  <p className="text-2xl font-black text-amber-950 mt-1">${estimatedMonthlyLoss.toLocaleString()}</p>
-                </div>
+          {/* Results */}
+          <div className="md:col-span-7 flex flex-col gap-5">
+            <div className="pb-4 border-b border-purple-400/20">
+              <h2 className="text-white font-semibold text-base">Diagnostic Projections</h2>
+              <p className="text-slate-400 text-xs mt-1">Figures update live as you adjust the sliders.</p>
+            </div>
+            {/* Stat row — muted teal + muted stone */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-xl p-5 bg-teal-900/70 border border-teal-600/35">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-teal-300 mb-2">Gross Fuel / Month</p>
+                <p className="text-2xl font-semibold text-white tabular-nums">${currentTotalMonthlyFuel.toLocaleString()}</p>
               </div>
-
-              <div className="bg-amber-950/20 border border-white/80 p-6 rounded-2xl shadow-md">
-                <p className="text-sm font-mono text-amber-900 uppercase font-black tracking-wider">Current Hidden Annual Drain</p>
-                <p className="text-4xl md:text-5xl font-black text-amber-950 tracking-tight mt-1">
-                  ${annualLoss.toLocaleString()} <span className="text-sm text-amber-900 font-mono font-bold">USD / year</span>
-                </p>
+              <div className="rounded-xl p-5 bg-stone-700/80 border border-stone-500/40">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-stone-300 mb-2">Estimated Leakage / Month</p>
+                <p className="text-2xl font-semibold text-amber-200 tabular-nums">${estimatedMonthlyLoss.toLocaleString()}</p>
               </div>
-
-              {/* Savings Highlight Box with Emerald Neon Glow */}
-              <div className="bg-emerald-900/10 border-2 border-emerald-600/80 p-6 rounded-2xl shadow-[inset_0_2px_4px_rgba(255,255,255,0.8),0_10px_20px_rgba(5,150,105,0.2)]">
-                <p className="text-sm font-mono text-emerald-950 uppercase tracking-wider font-black">Projected Telsite Recovery Capital</p>
-                <p className="text-4xl md:text-5xl font-black text-emerald-900 tracking-tight mt-1">
-                  ${telsiteAnnualSavings.toLocaleString()} <span className="text-sm text-emerald-800 font-mono font-bold">saved / year</span>
+            </div>
+            {/* Annual drain — purple */}
+            <div className="rounded-xl p-5 space-y-2 border border-purple-400/25 bg-purple-900/50">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-purple-300">Hidden Annual Drain</p>
+              <p className="text-4xl md:text-5xl font-serif font-semibold text-white tabular-nums">
+                ${annualLoss.toLocaleString()}
+              </p>
+              <p className="text-xs text-slate-400 font-medium">USD per year lost to fuel siphoning</p>
+            </div>
+            {/* Savings — image bg with overlay */}
+            <div className="relative rounded-xl overflow-hidden">
+              <img src={tracking5} alt="" aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy" decoding="async" />
+              <div className="absolute inset-0 bg-teal-950/85" />
+              <div className="relative z-10 p-6 space-y-2">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-teal-300">Projected Telsite Recovery</p>
+                <p className="text-4xl md:text-5xl font-serif font-semibold text-white tabular-nums">
+                  ${telsiteAnnualSavings.toLocaleString()}
                 </p>
-                <p className="text-xs md:text-sm text-amber-950/90 mt-2 leading-relaxed font-black">
-                  *Calculated based on a 75% system configuration optimization metric via immediate alert defense triggers.
+                <p className="text-xs text-teal-300 font-medium">saved per year</p>
+                <p className="text-xs text-slate-400 pt-2 leading-relaxed border-t border-white/10 mt-2">
+                  * Based on a 75% recovery rate via Telsite's real-time alert and sensor technology.
                 </p>
               </div>
             </div>
-            
+            <button
+              onClick={() => onNavigate('contact')}
+              className="cursor-pointer w-full py-3.5 bg-[#D8C7A9] hover:bg-white text-amber-950 text-sm font-bold uppercase tracking-widest rounded-lg transition-colors duration-200 shadow-md mt-auto">
+              Request a Fleet Consultation →
+            </button>
           </div>
-
         </div>
-
       </div>
     </div>
   );
